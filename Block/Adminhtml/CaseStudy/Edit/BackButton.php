@@ -10,6 +10,7 @@
 namespace Qoliber\CaseStudyManager\Block\Adminhtml\CaseStudy\Edit;
 
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
+use Qoliber\CaseStudyManager\Block\Adminhtml\CaseStudy\Edit\GenericButton;
 
 class BackButton extends GenericButton implements ButtonProviderInterface
 {
