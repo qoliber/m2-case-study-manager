@@ -1,4 +1,12 @@
 <?php
+/**
+ * Created by Qoliber
+ *
+ * @category    Qoliber
+ * @package     Qoliber_EventCalendar
+ * @author      Jakub Winkler <jwinkler@qoliber.com>
+ */
+
 declare(strict_types=1);
 
 namespace Qoliber\CaseStudyManager\Api\Data;
@@ -10,7 +18,7 @@ interface CaseStudySearchResultsInterface
      *
      * @return \Qoliber\CaseStudyManager\Api\Data\CaseStudyInterface[]
      */
-    public function getItems(): array;
+    public function getItems();
 
     /**
      * Set items
@@ -18,20 +26,5 @@ interface CaseStudySearchResultsInterface
      * @param \Qoliber\CaseStudyManager\Api\Data\CaseStudyInterface[] $items
      * @return $this
      */
-    public function setItems(array $items): self;
-
-    /**
-     * Get total count
-     *
-     * @return int
-     */
-    public function getTotalCount(): int;
-
-    /**
-     * Set total count
-     *
-     * @param int $totalCount
-     * @return $this
-     */
-    public function setTotalCount(int $totalCount): self;
+    public function setItems(array $items);
 }

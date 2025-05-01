@@ -1,14 +1,17 @@
 <?php
+/**
+ * Created by Qoliber
+ *
+ * @category    Qoliber
+ * @package     Qoliber_CaseStudyManager
+ * @author      Jakub Winkler <jwinkler@qoliber.com>
+ */
+
 declare(strict_types=1);
 
 namespace Qoliber\CaseStudyManager\Api;
 
-use Magento\Framework\Api\SearchCriteriaInterface;
-use Magento\Framework\Exception\CouldNotDeleteException;
-use Magento\Framework\Exception\CouldNotSaveException;
-use Magento\Framework\Exception\NoSuchEntityException;
 use Qoliber\CaseStudyManager\Api\Data\CaseStudyInterface;
-use Qoliber\CaseStudyManager\Api\Data\CaseStudySearchResultsInterface;
 
 interface CaseStudyRepositoryInterface
 {

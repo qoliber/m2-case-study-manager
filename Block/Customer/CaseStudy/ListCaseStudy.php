@@ -11,12 +11,12 @@ declare(strict_types=1);
 
 namespace Qoliber\CaseStudyManager\Block\Customer\CaseStudy;
 
+use Magento\Customer\Model\Session;
+use Magento\Framework\UrlInterface;
+use Magento\Framework\View\Element\Template\Context;
 use Magento\Framework\View\Element\Template;
 use Qoliber\CaseStudyManager\Model\ResourceModel\CaseStudy\Collection;
 use Qoliber\CaseStudyManager\Model\ResourceModel\CaseStudy\CollectionFactory;
-use Magento\Customer\Model\Session;
-use Magento\Framework\View\Element\Template\Context;
-use Magento\Framework\UrlInterface;
 
 class ListCaseStudy extends Template
 {

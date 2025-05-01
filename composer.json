@@ -1,6 +1,6 @@
 {
     "name": "qoliber/m2-case-study-manager",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "require": {
         "qoliber/core": "*"
     },

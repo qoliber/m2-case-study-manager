@@ -15,8 +15,6 @@ use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\Controller\ResultInterface;
 use Magento\Framework\Exception\LocalizedException;
-use Magento\Framework\View\Result\PageFactory;
-use Psr\Log\LoggerInterface;
 use Qoliber\CaseStudyManager\Api\CaseStudyRepositoryInterface;
 use Qoliber\CaseStudyManager\Helper\Data as CaseStudyManagerHelper;
 use Qoliber\CaseStudyManager\Model\CaseStudy;
