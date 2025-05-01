@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+/**
+ * Created by Qoliber
+ *
+ * @category    Qoliber
+ * @package     Qoliber_CaseStudyManager
+ * @author      Jakub Winkler <jwinkler@qoliber.com>
+ */
+ -->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/casestudy/search" method="POST">
+        <service class="Qoliber\CaseStudyManager\Api\CaseStudySearchServiceInterface" method="search"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/casestudy/:url_key" method="GET">
+        <service class="Qoliber\CaseStudyManager\Api\CaseStudyRepositoryInterface" method="getByUrlKey"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/casestudy/config" method="GET">
+        <service class="Qoliber\CaseStudyManager\Api\ConfigProviderInterface" method="getConfig"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+</routes>

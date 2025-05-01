@@ -1,0 +1,92 @@
+Back,Back
+Delete,Delete
+"Are you sure you want to delete it?","Are you sure you want to delete it?"
+Save,Save
+"Case study not found","Case study not found"
+Type,Type
+"Add Customer Focus","Add Customer Focus"
+"Add Extension Vendor","Add Extension Vendor"
+"Add Type","Add Type"
+"Add Hosting Stack","Add Hosting Stack"
+"Add Integration","Add Integration"
+Version,Version
+"Add Version","Add Version"
+"Add Regional Focus","Add Regional Focus"
+"Add Vertical Type","Add Vertical Type"
+"The Qoliber CaseStudyManager has been deleted successfully","The Qoliber CaseStudyManager has been deleted successfully"
+"This Case Study doesn't exist","This Case Study doesn't exist"
+"Edit Case Study (ID: ' . . ')","Edit Case Study (ID: ' . . ')"
+"Add a new Qoliber CaseStudyManager","Add a new Qoliber CaseStudyManager"
+"Manage Case Studies","Manage Case Studies"
+"This case study no longer exists.","This case study no longer exists."
+"You saved the case study.","You saved the case study."
+"Something went wrong while saving the case study. %1","Something went wrong while saving the case study. %1"
+"You are not authorized to edit this case study.","You are not authorized to edit this case study."
+"Edit Case Study","Edit Case Study"
+"Your case study has been saved.","Your case study has been saved."
+"There was an error saving your case study: %1","There was an error saving your case study: %1"
+"Could not save the case study: %1","Could not save the case study: %1"
+"My Case Studies","My Case Studies"
+"The case study with the ""%1"" ID doesn't exist.","The case study with the ""%1"" ID doesn't exist."
+"The case study with the ""%1"" URL key doesn't exist.","The case study with the ""%1"" URL key doesn't exist."
+"Could not delete the case study: %1","Could not delete the case study: %1"
+type,type
+Edit,Edit
+"Delete Case Study","Delete Case Study"
+"Are you sure you want to delete this case study?","Are you sure you want to delete this case study?"
+"Case Study Details","Case Study Details"
+Title,Title
+"Store URL","Store URL"
+Country,Country
+Image,Image
+"Allowed file types: PNG, JPEG, JPG, WebP. Max file size: 2MB.","Allowed file types: PNG, JPEG, JPG, WebP. Max file size: 2MB."
+Summary,Summary
+"Plain text only, HTML tags are not allowed. Min 50 characters.","Plain text only, HTML tags are not allowed. Min 50 characters."
+"Only Markdown formatting is allowed in this field.","Only Markdown formatting is allowed in this field."
+"Markdown Content","Markdown Content"
+"Min 100 characters.","Min 100 characters."
+"Magento Version","Magento Version"
+"Frontend Type","Frontend Type"
+"Extension Vendors","Extension Vendors"
+Integrations,Integrations
+"Hosting Stack","Hosting Stack"
+"Vertical Type","Vertical Type"
+Status,Status
+Actions,Actions
+Placeholder,Placeholder
+Active,Active
+Inactive,Inactive
+"You have no case studies yet.","You have no case studies yet."
+"Add New Case Study","Add New Case Study"
+"Create Case Study","Create Case Study"
+"Delete image","Delete image"
+"New Case Study Submission: %title","New Case Study Submission: %title"
+"A new case study has been submitted and is waiting for approval.","A new case study has been submitted and is waiting for approval."
+"Customer Email","Customer Email"
+"Waiting for Approval","Waiting for Approval"
+"Please review this submission in the admin panel.","Please review this submission in the admin panel."
+Qoliber,Qoliber
+"Case Study Manager","Case Study Manager"
+Settings,Settings
+Enabled,Enabled
+"Marketing Team Email Address","Marketing Team Email Address"
+"Email address to notify when new case studies are submitted","Email address to notify when new case studies are submitted"
+"Email Template","Email Template"
+"Select the email template for case study notifications","Select the email template for case study notifications"
+"Magento Versions","Magento Versions"
+"Frontend Types","Frontend Types"
+"Vertical Types","Vertical Types"
+"Customer Focus","Customer Focus"
+"Regional Focus","Regional Focus"
+"Case Study Information","Case Study Information"
+"Main Information","Main Information"
+"Enable Case Study","Enable Case Study"
+Position,Position
+Customer,Customer
+"URL Key","URL Key"
+"Store Logo","Store Logo"
+"Only markdown syntax is allowed","Only markdown syntax is allowed"
+Content,Content
+Details,Details
+"Is Active","Is Active"
+Dictionary successfully processed.

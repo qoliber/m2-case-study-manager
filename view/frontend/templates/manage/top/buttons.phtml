@@ -1,0 +1,18 @@
+<?php
+/**
+ * Created by Qoliber
+ *
+ * @category    Qoliber
+ * @package     Qoliber_CaseStudyManager
+ * @author      Jakub Winkler <jwinkler@qoliber.com>
+ */
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var \Magento\Framework\Escaper $escaper */
+?>
+<div class="actions-toolbar">
+    <div class="primary">
+        <a href="<?= $escaper->escapeUrl($block->getNewUrl()) ?>" class="action primary">
+            <span><?= $escaper->escapeHtml(__('Create Case Study')) ?></span>
+        </a>
+    </div>
+</div>

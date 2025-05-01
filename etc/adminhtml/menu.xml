@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+/**
+ * Created by Qoliber
+ *
+ * @category    Qoliber
+ * @package     Qoliber_CaseStudyManager
+ * @author      Jakub Winkler <jwinkler@qoliber.com>
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Qoliber_CaseStudyManager::menu"
+             title="Qoliber CaseStudyManager"
+             module="Qoliber_CaseStudyManager"
+             sortOrder="60"
+             resource="Qoliber_CaseStudyManager::config"
+             parent="Qoliber_Core::menu" />
+
+        <add id="Qoliber_CaseStudyManager::config"
+             title="Config"
+             module="Qoliber_CaseStudyManager"
+             sortOrder="30"
+             action="adminhtml/system_config/edit/section/qoliber_casestudy_manager"
+             resource="Qoliber_CaseStudyManager::list"
+             parent="Qoliber_CaseStudyManager::menu"/>
+
+        <add id="Qoliber_CaseStudyManager::list"
+             title="Manage"
+             module="Qoliber_CaseStudyManager"
+             sortOrder="40"
+             action="casestudy/CaseStudy/index"
+             resource="Qoliber_CaseStudyManager::list"
+             parent="Qoliber_CaseStudyManager::menu"/>
+    </menu>
+</config>

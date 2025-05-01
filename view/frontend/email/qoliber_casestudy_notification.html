@@ -1,0 +1,31 @@
+<!--@subject {{trans "New Case Study Submission: %title" title=$case_study.getTitle()}} @-->
+<!--@vars {
+"var case_study.getTitle()":"Case Study Title",
+"var customer_email":"Customer Email",
+"var store.frontend_name":"Store Name",
+"template config_path=\"design/email/header_template\"":"Email Header Template",
+"template config_path=\"design/email/footer_template\"":"Email Footer Template"
+} @-->
+
+{{template config_path="design/email/header_template"}}
+
+<p>{{trans "A new case study has been submitted and is waiting for approval."}}</p>
+
+<table class="message-details">
+    <tr>
+        <th>{{trans "Title"}}:</th>
+        <td>{{var case_study.getTitle()}}</td>
+    </tr>
+    <tr>
+        <th>{{trans "Customer Email"}}:</th>
+        <td>{{var customer_email}}</td>
+    </tr>
+    <tr>
+        <th>{{trans "Status"}}:</th>
+        <td>{{trans "Waiting for Approval"}}</td>
+    </tr>
+</table>
+
+<p>{{trans "Please review this submission in the admin panel."}}</p>
+
+{{template config_path="design/email/footer_template"}} 

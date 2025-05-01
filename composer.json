@@ -1,0 +1,31 @@
+{
+    "name": "qoliber/m2-case-study-manager",
+    "version": "1.0.0",
+    "require": {
+        "qoliber/core": "*"
+    },
+    "source": {
+        "type": "git",
+        "url": "git@github.com:qoliber/m2-case-study-manager",
+        "reference": "main"
+    },
+    "authors": [
+        {
+            "name": "Jakub Winkler",
+            "email": "jwinkler@qoliber.com"
+        },
+        {
+            "name": "qoliber",
+            "email": "info@qoliber.com"
+        }
+    ],
+    "license": "MIT",
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Qoliber\\Psl\\": ""
+        }
+    }
+}

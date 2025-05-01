@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+/**
+ * Created by Qoliber
+ *
+ * @category    Qoliber
+ * @package     Qoliber_CaseStudyManager
+ * @author      Jakub Winkler <jwinkler@qoliber.com>
+ */
+ -->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="qoliber_casestudy_entity">
+        <column xsi:type="smallint" name="entity_id" comment="Entity ID" nullable="false"
+                unsigned="true" identity="true"/>
+        <column xsi:type="int" name="customer_id" nullable="false" unsigned="true" comment="Customer ID"/>
+        <column xsi:type="varchar" name="uuid" nullable="true" length="36" comment="UUID"/>
+        <column xsi:type="smallint" name="position" comment="Position" nullable="false" default="1"/>
+        <column xsi:type="smallint" name="is_active" comment="Is Active" nullable="false"/>
+        <column xsi:type="varchar" name="title" comment="Title" nullable="false"/>
+        <column xsi:type="text" name="summary" comment="Summary" nullable="false"/>
+        <column xsi:type="text" name="content" comment="Content" nullable="false"/>
+        <column xsi:type="varchar" name="store_url" comment="Store URL" nullable="false"/>
+        <column xsi:type="varchar" name="url_key" comment="Url Key" nullable="true"/>
+        <column xsi:type="varchar" name="image" comment="Image" nullable="false"/>
+        <column xsi:type="varchar" name="meta_title" comment="Meta title" nullable="true"/>
+        <column xsi:type="varchar" name="meta_description" comment="Meta description" nullable="true"/>
+        <column xsi:type="varchar" name="meta_keywords" comment="Meta keywords" nullable="true"/>
+        <column xsi:type="varchar" name="magento_version" nullable="false" length="255" comment="Magento Version"/>
+        <column xsi:type="varchar" name="frontend_type" nullable="false" length="255" comment="Frontend Type"/>
+        <column xsi:type="varchar" name="vertical_types" nullable="true" comment="Vertical Types"/>
+        <column xsi:type="varchar" name="customer_focus" nullable="true" comment="Customer Focus"/>
+        <column xsi:type="varchar" name="regional_focus" nullable="true" comment="Regional Focus"/>
+        <column xsi:type="varchar" name="country_id" nullable="false" length="2" comment="Country ID"/>
+        <column xsi:type="text" name="extension_vendors" nullable="true" comment="Extension Vendors"/>
+        <column xsi:type="text" name="integrations" nullable="true" comment="Integrations"/>
+        <column xsi:type="varchar" name="hosting_stack" nullable="true" comment="Hosting Stack"/>
+        <column name="created_at" xsi:type="timestamp" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Creation Time"/>
+        <column name="updated_at" xsi:type="timestamp" nullable="false" on_update="true" default="CURRENT_TIMESTAMP"
+                comment="Update Time"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+
+        <constraint xsi:type="unique" referenceId="QOLIBER_CASESTUDY_URL_KEY">
+            <column name="url_key"/>
+        </constraint>
+
+        <constraint xsi:type="unique" referenceId="QOLIBER_CASESTUDY_UUID">
+            <column name="uuid"/>
+        </constraint>
+
+        <constraint xsi:type="foreign" referenceId="QOLIBER_CASESTUDY_CUSTOMER_ID_CUSTOMER_ENTITY_ID"
+                    table="qoliber_casestudy_entity" column="customer_id" referenceTable="customer_entity"
+                    referenceColumn="entity_id" onDelete="CASCADE" />
+    </table>
+</schema>

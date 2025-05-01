@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="customer_account" />
+    <body>
+        <referenceContainer name="content">
+            <block name="casestudy.manage.top"
+                   template="Qoliber_CaseStudyManager::manage/top.phtml">
+                <block name="casestudy.manage.top.buttons"
+                       template="Qoliber_CaseStudyManager::manage/top/buttons.phtml"
+                />
+            </block>
+            <block class="Qoliber\CaseStudyManager\Block\Customer\CaseStudy\ListCaseStudy"
+                   name="casestudy.manage.list"
+                   template="Qoliber_CaseStudyManager::manage/list.phtml"
+            />
+        </referenceContainer>
+    </body>
+</page>

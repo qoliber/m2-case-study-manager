@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+/**
+ * Created by Qoliber
+ *
+ * @category    Qoliber
+ * @package     Qoliber_CaseStudyManager
+ * @author      Jakub Winkler <jwinkler@qoliber.com>
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Qoliber\CaseStudyManager\Api\Data\CaseStudyInterface"
+                type="Qoliber\CaseStudyManager\Model\Data\CaseStudy"/>
+    <preference for="Qoliber\CaseStudyManager\Api\CaseStudyRepositoryInterface"
+                type="Qoliber\CaseStudyManager\Model\CaseStudyRepository"/>
+    <preference for="Qoliber\CaseStudyManager\Api\Data\CaseStudySearchResultsInterface"
+                type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Qoliber\CaseStudyManager\Api\Data\OpenSearchQueryInterface"
+                type="Qoliber\CaseStudyManager\Model\Data\OpenSearchQuery"/>
+    <preference for="Qoliber\CaseStudyManager\Api\CaseStudySearchServiceInterface"
+                type="Qoliber\CaseStudyManager\Service\CaseStudySearchService" />
+    <preference for="Qoliber\CaseStudyManager\Api\ConfigProviderInterface"
+                type="Qoliber\CaseStudyManager\Provider\ConfigProvider" />
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="qoliber_casestudy_list_data_source"
+                      xsi:type="string">Qoliber\CaseStudyManager\Model\ResourceModel\CaseStudy\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <virtualType name="Qoliber\CaseStudyManager\Model\ResourceModel\CaseStudy\Grid\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">qoliber_casestudy_entity</argument>
+            <argument name="resourceModel"
+                      xsi:type="string">Qoliber\CaseStudyManager\Model\ResourceModel\CaseStudy</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Qoliber\CaseStudyManager\Api\CaseStudyRepositoryInterface">
+        <plugin name="qoliber_casestudymanager_opensearch_sync"
+                type="Qoliber\CaseStudyManager\Plugin\OpenSearchProfileSync"
+        />
+    </type>
+</config>

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+/**
+ * Created by Qoliber
+ *
+ * @category    Qoliber
+ * @package     Qoliber_CaseStudyManager
+ * @author      Jakub Winkler <jwinkler@qoliber.com>
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <qoliber_casestudy_manager>
+            <settings>
+                <enabled>1</enabled>
+            </settings>
+        </qoliber_casestudy_manager>
+
+        <system>
+            <media_storage_configuration>
+                <allowed_resources>
+                    <media_gallery_image_folders>
+                        <case_study>case_study</case_study>
+                    </media_gallery_image_folders>
+                </allowed_resources>
+            </media_storage_configuration>
+        </system>
+
+        <qoliber_casestudy>
+            <opensearch>
+                <entity_index>case_studies</entity_index>
+            </opensearch>
+            <settings>
+                <enabled>1</enabled>
+                <marketing_team_email>marketing@magentoassociation.org</marketing_team_email>
+                <email_template>qoliber_casestudy_settings_email_template</email_template>
+                <magento_versions><![CDATA[{
+                    "_1741975987855_855":{"type":"Magento Open Source"},
+                    "_1741975987855_856":{"type":"Mage-OS"},
+                    "_1741975991880_880":{"type":"Adobe Commerce"},
+                    "_1741975998062_62": {"type":"Adobe Cloud"}
+                }]]></magento_versions>
+                <frontend_types><![CDATA[{
+                    "_1741975987855_855":{"type":"Luma Based"},
+                    "_1741975991880_880":{"type":"Hyva Based"},
+                    "_1741975998062_62":{"type":"PWA Studio"},
+                    "_1741975998063_63":{"type":"Next JS"},
+                    "_1741975998064_64":{"type":"React"},
+                    "_1741975998065_65":{"type":"Vue JS"},
+                    "_1741975998066_66":{"type":"Graphcommerce"},
+                    "_1741975998067_67":{"type":"...other"}
+                }]]></frontend_types>
+                <vertical_types><![CDATA[{
+                    "_1741975987855_857":{"type":"Apparel"},
+                    "_1741975998065_65":{"type":"Automotive"},
+                    "_1741975998066_66":{"type":"Beauty"},
+                    "_1741975998067_67":{"type":"Books"},
+                    "_1741975998068_68":{"type":"Electronics"},
+                    "_1741975998064_64":{"type":"Food"},
+                    "_1741975998063_63":{"type":"Federal"},
+                    "_1741975991880_881":{"type":"Healthcare"},
+                    "_1741975987855_858":{"type":"Industry"},
+                    "_1741975998069_69":{"type":"Jewelry"},
+                    "_1741975998070_70":{"type":"Kids & Toys"},
+                    "_1741975998072_72":{"type":"Sports & Outdoors"},
+                    "_1741975998073_73":{"type":"Tools & Hardware"},
+                    "_1741975998074_74":{"type":"Travel & Leisure"},
+                    "_1741975998075_75":{"type":"Watches & Accessories"},
+                    "_1741975998076_76":{"type":"...other"}
+                }]]></vertical_types>
+                <customer_focus><![CDATA[{
+                    "_1741975987855_859":{"type":"B2C"},
+                    "_1741975987855_860":{"type":"B2B"},
+                    "_1741975991880_882":{"type":"Both"}
+                }]]></customer_focus>
+                <regional_focus><![CDATA[{
+                    "_1741975987855_861":{"type":"Local"},
+                    "_1741975987855_862":{"type":"State/National"},
+                    "_1741975991880_883":{"type":"Continental"},
+                    "_1741975998065_65":{"type":"Global"}
+                }]]></regional_focus>
+                <extension_vendors><![CDATA[{
+                    "_1741975998067_67":{"type":"qoliber"},
+                    "_1741975987855_863":{"type":"AHeadworks"},
+                    "_1741975987855_864":{"type":"Amasty"},
+                    "_1741975991880_884":{"type":"BssCommerce"},
+                    "_1741975998066_66":{"type":"Mirasvit"},
+                    "_1741976001001_68":{"type":"Mageplaza"},
+                    "_1741976002002_69":{"type":"Webkul"},
+                    "_1741976003003_70":{"type":"Meetanshi"},
+                    "_1741976004004_71":{"type":"Mageworx"},
+                    "_1741976006006_73":{"type":"FMEextensions"},
+                    "_1741976007007_74":{"type":"Landofcoder"},
+                    "_1741976008008_75":{"type":"Plumrocket"},
+                    "_1741976009009_76":{"type":"Aitoc"},
+                    "_1741976010010_77":{"type":"Swissuplabs"},
+                    "_1741976011011_78":{"type":"Infortis"}
+                }]]></extension_vendors>
+                <integrations><![CDATA[{
+                    "_1741976001001_01":{"type":"Amazon Pay"},
+                    "_1741976001002_02":{"type":"Authorize.Net"},
+                    "_1741976001003_03":{"type":"Braintree"},
+                    "_1741976001004_04":{"type":"Clerk.io"},
+                    "_1741976001005_05":{"type":"Dotdigital"},
+                    "_1741976001006_06":{"type":"eBay"},
+                    "_1741976001007_07":{"type":"Facebook Ads"},
+                    "_1741976001008_08":{"type":"FedEx"},
+                    "_1741976001009_09":{"type":"Google Analytics"},
+                    "_1741976001010_10":{"type":"Google Shopping"},
+                    "_1741976001011_11":{"type":"HubSpot"},
+                    "_1741976001012_12":{"type":"Instagram Shopping"},
+                    "_1741976001013_13":{"type":"Klarna"},
+                    "_1741976001014_14":{"type":"Mailchimp"},
+                    "_1741976001015_15":{"type":"Matrixrate"},
+                    "_1741975998068_68":{"type":"Microsoft SAP"},
+                    "_1741976001016_16":{"type":"Microsoft Dynamics"},
+                    "_1741975991880_885":{"type":"Mollie"},
+                    "_1741976001017_17":{"type":"Nosto"},
+                    "_1741975987855_866":{"type":"PayPal"},
+                    "_1741976001018_18":{"type":"QuickBooks"},
+                    "_1741976001019_19":{"type":"ReCaptcha"},
+                    "_1741976001020_20":{"type":"Salesforce"},
+                    "_1741976001021_21":{"type":"Sendinblue"},
+                    "_1741975987855_865":{"type":"ShipperHQ"},
+                    "_1741976001022_22":{"type":"Stripe"},
+                    "_1741975998069_69":{"type":"Subkiet GT"},
+                    "_1741976001023_23":{"type":"Trustpilot"},
+                    "_1741976001024_24":{"type":"Twilio"},
+                    "_1741976001025_25":{"type":"Zendesk"}
+                }]]></integrations>
+                <hosting_stack><![CDATA[{
+                    "_1741975987855_867":{"type":"AWS"},
+                    "_1741975987855_867":{"type":"Azure"},
+                    "_1741976002001_01":{"type":"Akamai"},
+                    "_1741976002002_02":{"type":"Cloudflare"},
+                    "_1741976002003_03":{"type":"Cloudways"},
+                    "_1741976002004_04":{"type":"DigitalOcean"},
+                    "_1741976002005_05":{"type":"Fastly"},
+                    "_1741975987855_868":{"type":"Hetzner"},
+                    "_1741976002006_06":{"type":"Hypernode"},
+                    "_1741976002007_07":{"type":"Kinsta"},
+                    "_1741976002008_08":{"type":"Linode"},
+                    "_1741976002009_09":{"type":"Magento Cloud"},
+                    "_1741976002010_10":{"type":"Nexcess"},
+                    "_1741976002011_11":{"type":"Platform.sh"},
+                    "_1741976002012_12":{"type":"SiteGround"},
+                    "_1741976002013_13":{"type":"Vultr"},
+                    "_1741976002014_14":{"type":"Webscale"},
+                    "_1741975991880_886":{"type":"...other"}
+                }]]></hosting_stack>
+            </settings>
+        </qoliber_casestudy>
+    </default>
+</config>

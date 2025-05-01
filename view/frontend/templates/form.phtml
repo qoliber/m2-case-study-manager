@@ -1,0 +1,275 @@
+<?php
+/**
+ * Created by Qoliber
+ *
+ * @category    Qoliber
+ * @package     Qoliber_CaseStudyManager
+ * @author      Jakub Winkler <jwinkler@qoliber.com>
+ */
+
+use Magento\Framework\Escaper;
+
+/** @var \Qoliber\CaseStudyManager\Block\Customer\CaseStudy\Form $block */
+/** @var \Qoliber\CaseStudyManager\Api\Data\CaseStudyInterface $caseStudy */
+/** @var Escaper $escaper */
+
+$caseStudy = $block->getCaseStudy();
+?>
+<form class="max-w-6xl mx-auto bg-white shadow-lg rounded-lg p-6"
+      action="<?= $escaper->escapeUrl($block->getFormAction()) ?>"
+      method="post"
+      enctype="multipart/form-data"
+    >
+    <?= $block->getBlockHtml('formkey') ?>
+    <?php if ($caseStudy->getEntityId()): ?>
+        <input type="hidden" name="entity_id"
+               value="<?= $escaper->escapeHtmlAttr($caseStudy->getEntityId()) ?>"/>
+    <?php endif; ?>
+    <h2 class="text-2xl font-semibold text-gray-800 mb-4">
+        <?= $escaper->escapeHtml(__('Case Study Details')) ?></h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+            <label for="title" class="block text-sm font-medium text-gray-600">
+                <?= $escaper->escapeHtml(__('Title')) ?></label>
+            <input type="text"
+                   name="title"
+                   id="title"
+                   class="form-input w-full"
+                   maxlength="255"
+                   required
+                   value="<?= $escaper->escapeHtmlAttr($caseStudy->getTitle()) ?>"/>
+        </div>
+
+        <div>
+            <label for="store_url" class="block text-sm font-medium text-gray-600">
+                <?= $escaper->escapeHtml(__('Store URL')) ?></label>
+            <input type="url"
+                   name="store_url"
+                   id="store_url"
+                   class="form-input w-full"
+                   placeholder="https://"
+                   required
+                   value="<?= $escaper->escapeHtmlAttr($caseStudy->getStoreUrl()) ?>"/>
+        </div>
+
+        <div>
+            <label for="country_id" class="block text-sm font-medium text-gray-600">
+                <?= $escaper->escapeHtml(__('Country')) ?></label>
+            <select name="country_id"
+                    id="country_id"
+                    class="form-input w-full"
+                    required>
+                <?php foreach ($block->getCountryOptions() as $option): ?>
+                    <option value="<?= $escaper->escapeHtml($option['value']) ?>"
+                            <?= $caseStudy->getCountryId() == $option['value'] ? 'selected' : '' ?>>
+                        <?= $escaper->escapeHtml($option['label']) ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+
+        <div>
+            <label for="image" class="block text-sm font-medium text-gray-600">
+                <?= $escaper->escapeHtml(__('Image')) ?></label>
+            <?php if ($caseStudy->getImage()): ?>
+                <div class="mb-4">
+                    <img src="<?= $escaper->escapeUrl($block->getImageUrl($caseStudy->getImage())) ?>"
+                         alt="<?= $escaper->escapeHtml($caseStudy->getTitle()) ?>"
+                         class="max-w-xs h-auto rounded-lg shadow-md"/>
+                </div>
+            <?php endif; ?>
+            <input type="file"
+                   name="image"
+                   id="image"
+                   class="form-input w-full"
+                   <?= $caseStudy->getImage() ? '' : 'required' ?>
+                   accept="image/png,image/jpeg,image/jpg,image/webp"/>
+            <input type="hidden" name="image" value="<?= $escaper->escapeHtmlAttr($caseStudy->getImage()) ?>"/>
+            <p class="mt-1 text-sm text-gray-500">
+                <?= $escaper->escapeHtml(__('Allowed file types: PNG, JPEG, JPG, WebP. Max file size: 2MB.')) ?>
+            </p>
+        </div>
+
+        <div class="col-span-2">
+            <label for="summary" class="block text-sm font-medium text-gray-600">
+                <?= $escaper->escapeHtml(__('Summary')) ?></label>
+            <textarea name="summary"
+                      id="summary"
+                      rows="3"
+                      class="form-input w-full"
+                      minlength="50"
+                      maxlength="500"
+                      required><?= $escaper->escapeHtml($caseStudy->getSummary()) ?></textarea>
+            <p class="mt-1 text-sm text-gray-500">
+                <?= $escaper->escapeHtml(__('Plain text only, HTML tags are not allowed. Min 50 characters.')) ?>
+            </p>
+            <p class="mt-1 text-sm text-blue-600">
+                <?= $escaper->escapeHtml(__('Only Markdown formatting is allowed in this field.')) ?>
+            </p>
+        </div>
+
+        <div class="col-span-2">
+            <label for="content" class="block text-sm font-medium text-gray-600">
+                <?= $escaper->escapeHtml(__('Markdown Content')) ?>
+            </label>
+            <textarea name="content"
+                      id="content"
+                      rows="6"
+                      class="form-input w-full wysiwyg-editor"
+                      minlength="100"
+                      required><?= $escaper->escapeHtml($caseStudy->getContent()) ?></textarea>
+            <p class="mt-1 text-sm text-gray-500">
+                <?= $escaper->escapeHtml(__('Min 100 characters.')) ?></p>
+            <p class="mt-1 text-sm text-blue-600">
+                <?= $escaper->escapeHtml(__('Only Markdown formatting is allowed in this field.')) ?></p>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+        <div>
+            <label class="block text-2xl font-semibold text-gray-800 mb-4">
+                <?= $escaper->escapeHtml(__('Magento Version')) ?></label>
+            <div class="grid grid-cols-2 gap-4">
+                <?php foreach ($block->getMagentoVersions() as $version): ?>
+                    <div class="flex items-center gap-2">
+                        <input type="radio"
+                               name="magento_version"
+                               id="magento_version_<?= $escaper->escapeHtml($version) ?>"
+                               value="<?= $escaper->escapeHtml($version) ?>"
+                               class="form-radio h-5 w-5 text-blue-600"
+                               required
+                               <?= $caseStudy->getMagentoVersion() == $version ? 'checked' : '' ?>>
+                        <label for="magento_version_<?= $escaper->escapeHtml($version) ?>"
+                               class="text-sm font-medium text-gray-800">
+                            <?= $escaper->escapeHtml($version) ?>
+                        </label>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+
+        <div>
+            <label class="block text-2xl font-semibold text-gray-800 mb-4">
+                <?= $escaper->escapeHtml(__('Frontend Type')) ?></label>
+            <div class="grid grid-cols-2 gap-4">
+                <?php foreach ($block->getFrontendTypes() as $type): ?>
+                    <div class="flex items-center gap-2">
+                        <input type="radio"
+                               name="frontend_type"
+                               id="frontend_type_<?= $escaper->escapeHtml($type) ?>"
+                               value="<?= $escaper->escapeHtml($type) ?>"
+                               class="form-radio h-5 w-5 text-blue-600"
+                               required
+                               <?= $caseStudy->getFrontendType() == $type ? 'checked' : '' ?>>
+                        <label for="frontend_type_<?= $escaper->escapeHtml($type) ?>"
+                               class="text-sm font-medium text-gray-800">
+                            <?= $escaper->escapeHtml($type) ?>
+                        </label>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+
+        <div>
+            <label class="block text-2xl font-semibold text-gray-800 mb-4">
+                <?= $escaper->escapeHtml(__('Extension Vendors')) ?></label>
+            <div class="grid grid-cols-2 gap-4">
+                <?php foreach ($block->getExtensionVendors() as $vendor): ?>
+                    <?php $extVendors = $caseStudy->getData('extension_vendors_array'); ?>
+                    <div class="flex items-center gap-2">
+                        <input type="checkbox"
+                               name="extension_vendors[]"
+                               id="extension_vendor_<?= $escaper->escapeHtml($vendor) ?>"
+                               value="<?= $escaper->escapeHtml($vendor) ?>"
+                               class="form-checkbox h-5 w-5 text-blue-600"
+                               <?= in_array($vendor, $extVendors ?? []) ? 'checked' : '' ?>>
+                        <label for="extension_vendor_<?= $escaper->escapeHtml($vendor) ?>"
+                               class="text-sm font-medium text-gray-800">
+                            <?= $escaper->escapeHtml($vendor) ?>
+                        </label>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+
+        <div>
+            <label class="block text-2xl font-semibold text-gray-800 mb-4">
+                <?= $escaper->escapeHtml(__('Integrations')) ?></label>
+            <div class="grid grid-cols-2 gap-4">
+                <?php foreach ($block->getIntegrations() as $integration): ?>
+                    <?php $integrations = $caseStudy->getData('integrations_array') ?? []; ?>
+                    <div class="flex items-center gap-2">
+                        <input type="checkbox"
+                               name="integrations[]"
+                               id="integration_<?= $escaper->escapeHtml($integration) ?>"
+                               value="<?= $escaper->escapeHtml($integration) ?>"
+                               class="form-checkbox h-5 w-5 text-blue-600"
+                               <?= in_array($integration, $integrations ?? []) ? 'checked' : '' ?>>
+                        <label for="integration_<?= $escaper->escapeHtml($integration) ?>"
+                               class="text-sm font-medium text-gray-800">
+                            <?= $escaper->escapeHtml($integration) ?>
+                        </label>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+
+        <div class="md:col-span-1">
+            <label class="block text-2xl font-semibold text-gray-800 mb-4">
+                <?= $escaper->escapeHtml(__('Hosting Stack')) ?></label>
+            <div class="grid grid-cols-2 md:grid-cols-2 gap-4">
+                <?php foreach ($block->getHostingStacks() as $stack): ?>
+                    <div class="flex items-center gap-2">
+                        <input type="radio"
+                               name="hosting_stack"
+                               id="hosting_stack_<?= $escaper->escapeHtml($stack) ?>"
+                               value="<?= $escaper->escapeHtml($stack) ?>"
+                               class="form-radio h-5 w-5 text-blue-600"
+                               required
+                               <?= $caseStudy->getHostingStack() == $stack ? 'checked' : '' ?>>
+                        <label for="hosting_stack_<?= $escaper->escapeHtml($stack) ?>"
+                               class="text-sm font-medium text-gray-800">
+                            <?= $escaper->escapeHtml($stack) ?>
+                        </label>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+
+        <div class="md:col-span-1">
+            <label class="block text-2xl font-semibold text-gray-800 mb-4">
+                <?= $escaper->escapeHtml(__('Vertical Type')) ?></label>
+            <div class="grid grid-cols-2 md:grid-cols-2 gap-4">
+                <?php foreach ($block->getVerticalTypes() as $type): ?>
+                    <div class="flex items-center gap-2">
+                        <input type="radio"
+                               name="vertical_types"
+                               id="vertical_types_<?= $escaper->escapeHtml($type) ?>"
+                               value="<?= $escaper->escapeHtml($type) ?>"
+                               class="form-radio h-5 w-5 text-blue-600"
+                               required
+                               <?= $caseStudy->getVerticalTypes() == $type ? 'checked' : '' ?>>
+                        <label for="vertical_types_<?= $escaper->escapeHtml($type) ?>"
+                               class="text-sm font-medium text-gray-800">
+                            <?= $escaper->escapeHtml($type) ?>
+                        </label>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-6 text-center">
+        <div class="flex justify-center space-x-3">
+            <a href="<?= $escaper->escapeUrl($block->getBackUrl()) ?>"
+               class="bg-gray-200 text-gray-700 px-6 py-3 rounded-lg hover:bg-gray-300">
+                <?= $escaper->escapeHtml(__('Back')) ?>
+            </a>
+            <button type="submit"
+                    class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700">
+                <?= $escaper->escapeHtml(__('Save')) ?>
+            </button>
+        </div>
+    </div>
+</form>
