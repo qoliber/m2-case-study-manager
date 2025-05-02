@@ -215,7 +215,7 @@
             </argument>
         </field>
 
-        <field name="screenshots_list" sortOrder="75w">
+        <field name="screenshots_list" sortOrder="75">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="dataType" xsi:type="string">text</item>
