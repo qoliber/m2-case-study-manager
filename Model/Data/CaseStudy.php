@@ -479,9 +479,10 @@ class CaseStudy extends AbstractModel implements CaseStudyInterface
     /**
      * Get Created At
      *
-     * @return string
+     * @return null|string
+     *
      */
-    public function getCreatedAt(): string
+    public function getCreatedAt(): ?string
     {
         return $this->getData(self::CREATED_AT);
     }

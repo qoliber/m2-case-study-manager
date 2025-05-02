@@ -416,9 +416,9 @@ interface CaseStudyInterface extends ExtensibleDataInterface
     /**
      * Get creation time
      *
-     * @return string
+     * @return null|string
      */
-    public function getCreatedAt(): string;
+    public function getCreatedAt(): ?string;
 
     /**
      * Set creation time
