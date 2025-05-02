@@ -111,7 +111,7 @@ $caseStudy = $block->getCaseStudy();
 
         <div class="col-span-2">
             <label for="content" class="block text-sm font-medium text-gray-600">
-                <?= $escaper->escapeHtml(__('Markdown Content')) ?>
+                <?= $escaper->escapeHtml(__('Detailed Description')) ?>
             </label>
             <textarea name="content"
                       id="content"
@@ -134,7 +134,7 @@ $caseStudy = $block->getCaseStudy();
                       rows="6"
                       class="form-input w-full wysiwyg-editor"
                       minlength="100"
-                      required><?= $escaper->escapeHtml($caseStudy->getContent()) ?></textarea>
+                      required><?= $escaper->escapeHtml($caseStudy->getScreenshotsList()) ?></textarea>
             <p class="mt-1 text-sm text-blue-600">
                 <?= $escaper->escapeHtml(__('Separated by new line, or comma character')) ?></p>
         </div>
