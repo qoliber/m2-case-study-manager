@@ -124,6 +124,20 @@ $caseStudy = $block->getCaseStudy();
             <p class="mt-1 text-sm text-blue-600">
                 <?= $escaper->escapeHtml(__('Only Markdown formatting is allowed in this field.')) ?></p>
         </div>
+
+        <div class="col-span-2">
+            <label for="screenshots_list" class="block text-sm font-medium text-gray-600">
+                <?= $escaper->escapeHtml(__('Screenshot List')) ?>
+            </label>
+            <textarea name="screenshots_list"
+                      id="screenshots_list"
+                      rows="6"
+                      class="form-input w-full wysiwyg-editor"
+                      minlength="100"
+                      required><?= $escaper->escapeHtml($caseStudy->getContent()) ?></textarea>
+            <p class="mt-1 text-sm text-blue-600">
+                <?= $escaper->escapeHtml(__('Separated by new line, or comma character')) ?></p>
+        </div>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">

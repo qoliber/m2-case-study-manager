@@ -64,6 +64,7 @@ class OpenSearchProfileSync
                 'uuid' => $caseStudy->getUuid(),
                 'position' => $caseStudy->getPosition(),
                 'content' => $caseStudy->getContent(),
+                'screenshots_list' => $caseStudy->getScreenshotsList(),
                 'summary' => $caseStudy->getSummary(),
                 'is_active' => (int) $caseStudy->getIsActive(),
                 'image' => $caseStudy->getImage(),
@@ -77,7 +78,9 @@ class OpenSearchProfileSync
                 'extension_vendors' => $vendors,
                 'integrations' => $integrations,
                 // @phpstan-ignore-next-line
-                'updated_at' => (new \DateTime($caseStudy->getUpdatedAt()))->format('Y-m-d\TH:i:sP'),
+                'updated_at' => $caseStudy->getUpdatedAt()
+                    ? (new \DateTime($caseStudy->getUpdatedAt()))->format('Y-m-d\TH:i:sP')
+                    : (new \DateTime())->format('Y-m-d\TH:i:sP'),
             ];
 
             $client->getOpenSearchClient()->index([

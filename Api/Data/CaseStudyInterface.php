@@ -40,6 +40,9 @@ interface CaseStudyInterface extends ExtensibleDataInterface
     public const CONTENT = 'content';
 
     /** @var string */
+    public const SCREENSHOTS_LIST = 'screenshots_list';
+
+    /** @var string */
     public const STORE_URL = 'store_url';
 
     /** @var string */
@@ -203,6 +206,21 @@ interface CaseStudyInterface extends ExtensibleDataInterface
      * @return $this
      */
     public function setContent(string $content): CaseStudyInterface;
+
+    /**
+     * Get Screenshots List
+     *
+     * @return string|null
+     */
+    public function getScreenshotsList(): ?string;
+
+    /**
+     * Set Screenshots List
+     *
+     * @param string $screenshotsList
+     * @return $this
+     */
+    public function setScreenshotsList(string $screenshotsList): CaseStudyInterface;
 
     /**
      * Get store URL

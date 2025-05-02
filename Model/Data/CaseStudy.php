@@ -497,4 +497,25 @@ class CaseStudy extends AbstractModel implements CaseStudyInterface
     {
         return $this->setData(self::CREATED_AT, $createdAt);
     }
+
+    /**
+     * Get Screenshots List
+     *
+     * @return string|null
+     */
+    public function getScreenshotsList(): ?string
+    {
+        return $this->getData(self::SCREENSHOTS_LIST);
+    }
+
+    /**
+     * Set Screenshots List
+     *
+     * @param string $screenshotsList
+     * @return $this
+     */
+    public function setScreenshotsList(string $screenshotsList): CaseStudyInterface
+    {
+        return $this->setData(self::SCREENSHOTS_LIST, $screenshotsList);
+    }
 }

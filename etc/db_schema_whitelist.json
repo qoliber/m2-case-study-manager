@@ -1,0 +1,38 @@
+{
+    "qoliber_casestudy_entity": {
+        "column": {
+            "entity_id": true,
+            "customer_id": true,
+            "uuid": true,
+            "position": true,
+            "is_active": true,
+            "title": true,
+            "summary": true,
+            "content": true,
+            "screenshots_list": true,
+            "store_url": true,
+            "url_key": true,
+            "image": true,
+            "meta_title": true,
+            "meta_description": true,
+            "meta_keywords": true,
+            "magento_version": true,
+            "frontend_type": true,
+            "vertical_types": true,
+            "customer_focus": true,
+            "regional_focus": true,
+            "country_id": true,
+            "extension_vendors": true,
+            "integrations": true,
+            "hosting_stack": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "QOLIBER_CASESTUDY_ENTITY_URL_KEY": true,
+            "QOLIBER_CASESTUDY_ENTITY_UUID": true,
+            "QOLIBER_CASESTUDY_ENTITY_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID": true
+        }
+    }
+}
