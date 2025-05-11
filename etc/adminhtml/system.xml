@@ -11,9 +11,6 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
-        <tab id="qoliber" translate="label" sortOrder="999">
-            <label>Qoliber</label>
-        </tab>
         <section id="qoliber_casestudy" translate="label" type="text" sortOrder="10"
                  showInDefault="1" showInWebsite="1" showInStore="1">
             <label>Case Study Manager</label>
@@ -39,55 +36,55 @@
                     <comment>Select the email template for case study notifications</comment>
                     <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
                 </field>
-                <field id="magento_versions" translate="label" type="textarea" sortOrder="10"
+                <field id="magento_versions" translate="label" sortOrder="10"
                        showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Magento Versions</label>
                     <comment>Enter one version per line in JSON format: {"version": "Magento 2.4.6"}</comment>
                     <frontend_model>Qoliber\CaseStudyManager\Block\System\Config\MagentoVersion</frontend_model>
-                    <backend_model>Magento\Config\Model\Config\Backend\Serialized</backend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
                 </field>
-                <field id="frontend_types" translate="label" type="textarea" sortOrder="20"
+                <field id="frontend_types" translate="label" sortOrder="20"
                        showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Frontend Types</label>
                     <comment>Enter one type per line in JSON format: {"type": "Luma"}</comment>
                     <frontend_model>Qoliber\CaseStudyManager\Block\System\Config\FrontendType</frontend_model>
-                    <backend_model>Magento\Config\Model\Config\Backend\Serialized</backend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
                 </field>
                 <field id="vertical_types" translate="label" sortOrder="4" showInDefault="1">
                     <label>Vertical Types</label>
                     <frontend_model>Qoliber\CaseStudyManager\Block\System\Config\VerticalType</frontend_model>
-                    <backend_model>Magento\Config\Model\Config\Backend\Serialized</backend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
                 </field>
                 <field id="customer_focus" translate="label" sortOrder="5" showInDefault="1">
                     <label>Customer Focus</label>
                     <frontend_model>Qoliber\CaseStudyManager\Block\System\Config\CustomerFocus</frontend_model>
-                    <backend_model>Magento\Config\Model\Config\Backend\Serialized</backend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
                 </field>
                 <field id="regional_focus" translate="label" sortOrder="6" showInDefault="1">
                     <label>Regional Focus</label>
                     <frontend_model>Qoliber\CaseStudyManager\Block\System\Config\RegionalFocus</frontend_model>
-                    <backend_model>Magento\Config\Model\Config\Backend\Serialized</backend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
                 </field>
-                <field id="extension_vendors" translate="label" type="textarea" sortOrder="30"
+                <field id="extension_vendors" translate="label" sortOrder="30"
                        showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Extension Vendors</label>
                     <comment>Enter one vendor per line in JSON format: {"type": "qoliber"}</comment>
                     <frontend_model>Qoliber\CaseStudyManager\Block\System\Config\ExtensionVendor</frontend_model>
-                    <backend_model>Magento\Config\Model\Config\Backend\Serialized</backend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
                 </field>
-                <field id="integrations" translate="label" type="textarea"
+                <field id="integrations" translate="label"
                        sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Integrations</label>
                     <comment>Enter one integration per line in JSON format: {"type": "ERP"}</comment>
                     <frontend_model>Qoliber\CaseStudyManager\Block\System\Config\Integration</frontend_model>
-                    <backend_model>Magento\Config\Model\Config\Backend\Serialized</backend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
                 </field>
-                <field id="hosting_stack" translate="label" type="textarea" sortOrder="50"
+                <field id="hosting_stack" translate="label" sortOrder="50"
                        showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Hosting Stack</label>
                     <comment>Enter one stack per line in JSON format: {"type": "On-Premise"}</comment>
                     <frontend_model>Qoliber\CaseStudyManager\Block\System\Config\HostingStack</frontend_model>
-                    <backend_model>Magento\Config\Model\Config\Backend\Serialized</backend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
                 </field>
             </group>
             <group id="opensearch" translate="label comment" type="text" sortOrder="20"
