@@ -29,7 +29,13 @@
 
         <qoliber_casestudy>
             <opensearch>
-                <entity_index>case_studies</entity_index>
+                <hostname>localhost</hostname>
+                <port>9200</port>
+                <use_https>0</use_https>
+                <index_name>casestudy</index_name>
+                <enable_auth>0</enable_auth>
+                <username></username>
+                <password></password>
             </opensearch>
             <settings>
                 <enabled>1</enabled>

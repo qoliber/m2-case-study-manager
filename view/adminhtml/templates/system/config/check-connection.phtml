@@ -1,0 +1,27 @@
+<?php
+/**
+ * Created by Qoliber
+ *
+ * @category    Qoliber
+ * @package     Qoliber_CaseStudyManager
+ * @author      Jakub Winkler <jwinkler@qoliber.com>
+ */
+
+use Magento\Framework\Escaper;
+
+/** @var \Qoliber\CaseStudyManager\Block\System\Config\CheckConnection $block */
+/** @var Escaper $escaper */
+?>
+<div class="actions actions-check-connection">
+    <?= /** @noEscape */ $block->getButtonHtml() ?>
+</div>
+
+<script type="text/x-magento-init">
+{
+    "*": {
+        "Qoliber_CaseStudyManager/js/system/config/check-connection": {
+            "ajaxUrl": "<?= $escaper->escapeJs($block->getAjaxUrl()) ?>"
+        }
+    }
+}
+</script>

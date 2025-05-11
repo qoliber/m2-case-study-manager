@@ -44,6 +44,8 @@ bin/magento cache:flush
    - Regional Focus Options
    - Available Integrations
    - Extension Vendors
+3. Configure OpenSearch settings
+4. Click "Test Connection" to assure the index in OpenSearch is created
 
 ## REST API Documentation
 
@@ -104,8 +106,17 @@ This module is licensed under the MIT License - see the LICENSE file for details
 
 ## Version
 
-Current version: 1.0.0
+Current version: 1.1.0
 
 ## Authors
 
 - Jakub Winkler (jwinkler@qoliber.com)
+
+# Release Notes
+
+1.1.0
+- added an open search configuration section in the module (for easlticsuite compatibility, if ES module was present, this module didn't work)
+- removed data patches
+
+1.0.0
+- initial module release

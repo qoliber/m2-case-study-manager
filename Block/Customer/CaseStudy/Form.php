@@ -25,7 +25,6 @@ use Qoliber\CaseStudyManager\Model\ResourceModel\CaseStudy\CollectionFactory;
 use Qoliber\CaseStudyManager\Model\CaseStudyFactory;
 use Qoliber\CaseStudyManager\Model\Config;
 
-
 class Form extends Template
 {
     /**

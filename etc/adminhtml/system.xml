@@ -90,6 +90,56 @@
                     <backend_model>Magento\Config\Model\Config\Backend\Serialized</backend_model>
                 </field>
             </group>
+            <group id="opensearch" translate="label comment" type="text" sortOrder="20"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>OpenSearch Configuration</label>
+                <field id="hostname" translate="label comment" type="text" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Hostname</label>
+                    <comment>OpenSearch server hostname</comment>
+                </field>
+                <field id="use_https" translate="label comment" type="select" sortOrder="15"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Use HTTPS</label>
+                    <comment>Enable if OpenSearch server uses HTTPS</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="port" translate="label comment" type="text" sortOrder="20"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Port</label>
+                    <comment>OpenSearch server port</comment>
+                    <validate>validate-number</validate>
+                </field>
+                <field id="index_name" translate="label" type="text" sortOrder="30"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Index Name</label>
+                    <comment>Name of the OpenSearch index for case studies</comment>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="enable_auth" translate="label comment" type="select" sortOrder="40"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Authentication</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="username" translate="label comment" type="obscure" sortOrder="50"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Username</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                    <depends><field id="enable_auth">1</field></depends>
+                </field>
+                <field id="password" translate="label comment" type="obscure" sortOrder="60"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Password</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                    <depends><field id="enable_auth">1</field></depends>
+                </field>
+                <field id="check_connection" translate="label" type="text" sortOrder="70"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Check Connection</label>
+                    <frontend_model>Qoliber\CaseStudyManager\Block\System\Config\CheckConnection</frontend_model>
+                    <comment>Click to verify OpenSearch connection and index existence</comment>
+                </field>
+            </group>
         </section>
     </system>
 </config>

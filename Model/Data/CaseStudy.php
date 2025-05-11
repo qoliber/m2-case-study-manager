@@ -480,7 +480,6 @@ class CaseStudy extends AbstractModel implements CaseStudyInterface
      * Get Created At
      *
      * @return null|string
-     *
      */
     public function getCreatedAt(): ?string
     {

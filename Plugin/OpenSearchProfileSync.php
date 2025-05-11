@@ -11,38 +11,37 @@ declare(strict_types=1);
 
 namespace Qoliber\CaseStudyManager\Plugin;
 
-use Magento\AdvancedSearch\Model\Client\ClientResolver;
-use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Framework\Exception\LocalizedException;
 use Qoliber\CaseStudyManager\Api\CaseStudyRepositoryInterface;
 use Qoliber\CaseStudyManager\Api\Data\CaseStudyInterface;
+use Qoliber\CaseStudyManager\Model\OpenSearch\OpenSearchClient;
 
 class OpenSearchProfileSync
 {
     /**
-     * @param \Magento\AdvancedSearch\Model\Client\ClientResolver $clientResolver
-     * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
+     * @param \Qoliber\CaseStudyManager\Model\OpenSearch\OpenSearchClient $openSearchClient
      */
     public function __construct(
-        private readonly ClientResolver $clientResolver,
-        private readonly ScopeConfigInterface $scopeConfig,
+        private readonly OpenSearchClient $openSearchClient
     ) {
     }
 
     /**
-     * After Plugin for CaseStudyRepositoryInterface::save
+     * After save plugin for case study repository
      *
      * @param \Qoliber\CaseStudyManager\Api\CaseStudyRepositoryInterface $subject
      * @param \Qoliber\CaseStudyManager\Api\Data\CaseStudyInterface $caseStudy
      * @return \Qoliber\CaseStudyManager\Api\Data\CaseStudyInterface
-     * @throws \Exception
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function afterSave(
         CaseStudyRepositoryInterface $subject,
         CaseStudyInterface $caseStudy
     ): CaseStudyInterface {
-        if ($caseStudy->getCustomerId() && $caseStudy->getEntityId()) {
-            /** @var \Magento\OpenSearch\Model\OpenSearch $client */
-            $client = $this->clientResolver->create();
+        try {
+            $client = $this->openSearchClient->getClient();
+            $indexName = $this->openSearchClient->getIndexName();
+
             $vendors = [];
             $integrations = [];
 
@@ -58,36 +57,85 @@ class OpenSearchProfileSync
                 ];
             }
 
-            $data = [
+            $document = [
+                'uuid' => $caseStudy->getUuid(),
+                'position' => (int)$caseStudy->getPosition(),
+                'is_active' => (int)$caseStudy->getIsActive(),
                 'title' => $caseStudy->getTitle(),
                 'url_key' => $caseStudy->getUrlKey(),
-                'uuid' => $caseStudy->getUuid(),
-                'position' => $caseStudy->getPosition(),
-                'content' => $caseStudy->getContent(),
-                'screenshots_list' => $caseStudy->getScreenshotsList(),
-                'summary' => $caseStudy->getSummary(),
-                'is_active' => (int) $caseStudy->getIsActive(),
                 'image' => $caseStudy->getImage(),
                 'magento_version' => $caseStudy->getMagentoVersion(),
                 'frontend_type' => $caseStudy->getFrontendType(),
                 'vertical_types' => $caseStudy->getVerticalTypes(),
                 'customer_focus' => $caseStudy->getCustomerFocus(),
                 'regional_focus' => $caseStudy->getRegionalFocus(),
-                'hosting_stack' => $caseStudy->getHostingStack(),
                 'country_id' => $caseStudy->getCountryId(),
                 'extension_vendors' => $vendors,
                 'integrations' => $integrations,
-                // @phpstan-ignore-next-line
+                'hosting_stack' => $caseStudy->getHostingStack(),
+                'content' => $caseStudy->getContent(),
+                'summary' => $caseStudy->getSummary(),
+                'screenshots_list' => $caseStudy->getScreenshotsList(),
                 'updated_at' => $caseStudy->getUpdatedAt()
                     ? (new \DateTime($caseStudy->getUpdatedAt()))->format('Y-m-d\TH:i:sP')
-                    : (new \DateTime())->format('Y-m-d\TH:i:sP'),
+                    : (new \DateTime())->format('Y-m-d\TH:i:sP')
             ];
 
-            $client->getOpenSearchClient()->index([
-                'index' => $this->scopeConfig->getValue('qoliber_casestudy/opensearch/entity_index'),
-                'id' => (string)$caseStudy->getEntityId(),
-                'body' => $data
-            ]);
+            if ($caseStudy->getIsActive()) {
+                $client->index([
+                    'index' => $indexName,
+                    'id' => $caseStudy->getUuid(),
+                    'body' => $document
+                ]);
+            } else {
+                try {
+                    $client->delete([
+                        'index' => $indexName,
+                        'id' => $caseStudy->getUuid()
+                    ]);
+                } catch (\Exception $e) {
+                    // Ignore if document doesn't exist
+                    if (strpos($e->getMessage(), 'not_found') === false) {
+                        throw $e;
+                    }
+                }
+            }
+        } catch (\Exception $e) {
+            throw new LocalizedException(__('Could not save the case study: %1', $e->getMessage()));
+        }
+
+        return $caseStudy;
+    }
+
+    /**
+     * After delete plugin for case study repository
+     *
+     * @param \Qoliber\CaseStudyManager\Api\CaseStudyRepositoryInterface $subject
+     * @param \Qoliber\CaseStudyManager\Api\Data\CaseStudyInterface $caseStudy
+     * @return \Qoliber\CaseStudyManager\Api\Data\CaseStudyInterface
+     * @throws \Magento\Framework\Exception\LocalizedException
+     */
+    public function afterDelete(
+        CaseStudyRepositoryInterface $subject,
+        CaseStudyInterface $caseStudy
+    ): CaseStudyInterface {
+        try {
+            $client = $this->openSearchClient->getClient();
+            $indexName = $this->openSearchClient->getIndexName();
+
+            try {
+                $client->delete([
+                    'index' => $indexName,
+                    'id' => $caseStudy->getUuid()
+                ]);
+            } catch (\Exception $e) {
+                // Ignore if document doesn't exist
+                if (strpos($e->getMessage(), 'not_found') === false) {
+                    throw $e;
+                }
+            }
+        } catch (\Exception $e) {
+            throw new LocalizedException(__('Could not delete the case study: %1', $e->getMessage()));
         }
 
         return $caseStudy;
