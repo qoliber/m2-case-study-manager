@@ -13,6 +13,7 @@
             <block class="Qoliber\CaseStudyManager\Block\Customer\CaseStudy\ListCaseStudy"
                    name="casestudy.manage.list"
                    template="Qoliber_CaseStudyManager::manage/list.phtml"
+                   cacheable="false"
             />
         </referenceContainer>
     </body>
