@@ -36,9 +36,11 @@ Edit,Edit
 "Are you sure you want to delete this case study?","Are you sure you want to delete this case study?"
 "Case Study Details","Case Study Details"
 Title,Title
+Store name,Store name
 "Store URL","Store URL"
 Country,Country
 Image,Image
+Store Logo,Store Logo
 "Allowed file types: PNG, JPEG, JPG, WebP. Max file size: 2MB.","Allowed file types: PNG, JPEG, JPG, WebP. Max file size: 2MB."
 Summary,Summary
 "Plain text only, HTML tags are not allowed. Min 50 characters.","Plain text only, HTML tags are not allowed. Min 50 characters."
