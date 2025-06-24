@@ -52,7 +52,7 @@ class Save extends Action
         if ($data) {
             $id = $this->getRequest()->getParam('entity_id');
             /** @var CaseStudy $caseStudyModel */
-            $caseStudyModel = $this->caseStudyFactory->create();
+            $caseStudyModel = $this->caseStudyFactory->create()->getDataModel();
 
             if ($id) {
                 try {

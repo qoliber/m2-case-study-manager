@@ -31,7 +31,7 @@ $caseStudy = $block->getCaseStudy();
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
             <label for="title" class="block text-sm font-medium text-gray-600">
-                <?= $escaper->escapeHtml(__('Store name')) ?></label>
+                <?= $escaper->escapeHtml(__('Title')) ?></label>
             <input type="text"
                    name="title"
                    id="title"
@@ -71,7 +71,7 @@ $caseStudy = $block->getCaseStudy();
 
         <div>
             <label for="image" class="block text-sm font-medium text-gray-600">
-                <?= $escaper->escapeHtml(__('Store Logo')) ?></label>
+                <?= $escaper->escapeHtml(__('Image')) ?></label>
             <?php if ($caseStudy->getImage()): ?>
                 <div class="mb-4">
                     <img src="<?= $escaper->escapeUrl($block->getImageUrl($caseStudy->getImage())) ?>"
@@ -127,7 +127,7 @@ $caseStudy = $block->getCaseStudy();
 
         <div class="col-span-2">
             <label for="screenshots_list" class="block text-sm font-medium text-gray-600">
-                <?= $escaper->escapeHtml(__('List of URLs for us to screenshot')) ?>
+                <?= $escaper->escapeHtml(__('Screenshot List')) ?>
             </label>
             <textarea name="screenshots_list"
                       id="screenshots_list"
