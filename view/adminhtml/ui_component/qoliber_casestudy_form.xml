@@ -167,7 +167,7 @@
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="dataType" xsi:type="string">string</item>
-                    <item name="label" xsi:type="string" translate="true">Store Logo</item>
+                    <item name="label" xsi:type="string" translate="true">Image</item>
                     <item name="formElement" xsi:type="string">fileUploader</item>
                     <item name="source" xsi:type="string">casestudy</item>
                     <item name="dataScope" xsi:type="string">image</item>

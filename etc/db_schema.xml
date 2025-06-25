@@ -23,7 +23,7 @@
         <column xsi:type="text" name="screenshots_list" comment="Screenshots List" nullable="false"/>
         <column xsi:type="varchar" name="store_url" comment="Store URL" nullable="false"/>
         <column xsi:type="varchar" name="url_key" comment="Url Key" nullable="true"/>
-        <column xsi:type="varchar" name="image" comment="Image" nullable="false"/>
+        <column xsi:type="varchar" name="image" comment="Store Logo" nullable="false"/>
         <column xsi:type="varchar" name="meta_title" comment="Meta title" nullable="true"/>
         <column xsi:type="varchar" name="meta_description" comment="Meta description" nullable="true"/>
         <column xsi:type="varchar" name="meta_keywords" comment="Meta keywords" nullable="true"/>
