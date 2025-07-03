@@ -242,16 +242,4 @@ class Form extends Template
 
         return null;
     }
-
-    public function getCustomerFocusOptions(): array
-    {
-        $focusOptions = [];
-        foreach ($this->config->getCustomerFocus() as $focus) {
-            $focusOptions[] = [
-                'value' => $focus['type'],
-                'label' => __($focus['type'])->render(),
-            ];
-        }
-        return $focusOptions;
-    }
 }

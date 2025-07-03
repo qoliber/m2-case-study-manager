@@ -126,22 +126,6 @@ $caseStudy = $block->getCaseStudy();
         </div>
 
         <div class="col-span-2">
-            <label for="customer_focus" class="block text-sm font-medium text-gray-600">
-                <?= $escaper->escapeHtml(__('Customer Focus')) ?></label>
-            <select name="customer_focus"
-                    id="customer_focus"
-                    class="form-input w-full"
-                    required>
-                <?php foreach ($block->getCustomerFocusOptions() as $option): ?>
-                    <option value="<?= $escaper->escapeHtml($option['value']) ?>"
-                        <?= $caseStudy->getCustomerFocus() == $option['value'] ? 'selected' : '' ?>>
-                        <?= $escaper->escapeHtml($option['label']) ?>
-                    </option>
-                <?php endforeach; ?>
-            </select>
-        </div>
-
-        <div class="col-span-2">
             <label for="screenshots_list" class="block text-sm font-medium text-gray-600">
                 <?= $escaper->escapeHtml(__('List of URLs for us to screenshot')) ?>
             </label>
