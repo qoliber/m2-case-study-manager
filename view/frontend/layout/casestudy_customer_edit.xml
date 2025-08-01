@@ -2,9 +2,6 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <update handle="customer_account"/>
-    <head>
-        <script src="https://cdn.jsdelivr.net/npm/showdown@2.1.0/dist/showdown.min.js" src_type="url"/>
-    </head>
     <body>
         <referenceContainer name="content">
             <block class="Qoliber\CaseStudyManager\Block\Customer\CaseStudy\Form"
