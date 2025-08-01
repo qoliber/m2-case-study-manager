@@ -36,7 +36,7 @@
                                     <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
                                         <?php if ($caseStudy->getImage()): ?>
                                             <img src="<?=
-                                                    $escaper->escapeUrl($block->getImageUrl($caseStudy->getImage())) ?>"
+                                                    $escaper->escapeUrl($block->getImageUrl($caseStudy->getImage(), true)) ?>"
                                                  alt="<?=
                                                     $escaper->escapeHtml($caseStudy->getTitle()) ?>"
                                                  class="h-12 w-12 object-cover rounded-lg shadow-sm" />

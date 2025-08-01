@@ -224,10 +224,11 @@ class Form extends Template
      * Get image URL
      *
      * @param string|null $image
+     * @param bool $thumbnail
      * @return string|null
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
-    public function getImageUrl(?string $image): ?string
+    public function getImageUrl(?string $image, bool $thumbnail = false): ?string
     {
         $mediaBaseUrl = $this->storeManager->getStore()->getBaseUrl(UrlInterface::URL_TYPE_MEDIA);
 
@@ -235,7 +236,7 @@ class Form extends Template
             return sprintf(
                 '%s/%s/%s',
                 $mediaBaseUrl,
-                'case_study',
+                $thumbnail ? 'case_study/thumbnails' : 'case_study',
                 $image
             );
         }

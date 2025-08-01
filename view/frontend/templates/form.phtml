@@ -74,7 +74,7 @@ $caseStudy = $block->getCaseStudy();
                 <?= $escaper->escapeHtml(__('Store Logo')) ?></label>
             <?php if ($caseStudy->getImage()): ?>
                 <div class="mb-4">
-                    <img src="<?= $escaper->escapeUrl($block->getImageUrl($caseStudy->getImage())) ?>"
+                    <img src="<?= $escaper->escapeUrl($block->getImageUrl($caseStudy->getImage(), true)) ?>"
                          alt="<?= $escaper->escapeHtml($caseStudy->getTitle()) ?>"
                          class="max-w-xs h-auto rounded-lg shadow-md"/>
                 </div>
