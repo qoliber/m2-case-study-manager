@@ -26,6 +26,8 @@ use Qoliber\CaseStudyManager\Model\CaseStudyFactory;
 
 class EditPost implements HttpPostActionInterface
 {
+    private const PARAM_SCREENSHOTS_LIST = 'screenshots_list';
+
     /**
      * @param \Magento\Framework\Url $url
      * @param \Magento\Framework\App\ResponseInterface $response
@@ -62,6 +64,27 @@ class EditPost implements HttpPostActionInterface
 
         if ($this->customerSession->authenticate()) {
             $this->response->setRedirect($this->url->getUrl('casestudy/manage/')); // @phpstan-ignore-line
+
+            $screenShotList = $this->request->getParam(self::PARAM_SCREENSHOTS_LIST); // @phpstan-ignore-line
+            if (!is_array($screenShotList)) {
+                $screenShotList = explode(PHP_EOL, $screenShotList);
+            }
+            $screenShotList = array_map('trim', $screenShotList);
+            $invalidUrls = [];
+
+            foreach ($screenShotList as $key => $url) {
+                if (!filter_var($url, FILTER_VALIDATE_URL)) {
+                    $invalidUrls[] = $url;
+                    unset($screenShotList[$key]);
+                }
+            }
+
+            $this->request->setParam(self::PARAM_SCREENSHOTS_LIST, implode(PHP_EOL, $screenShotList)); // @phpstan-ignore-line
+            if (!empty($invalidUrls)) {
+                $this->messageManager->addErrorMessage(
+                    __('The following URLs are invalid and have been removed: %1', implode(', ', $invalidUrls))->render()
+                );
+            }
 
             try {
                 $this->saveCaseStudy(
