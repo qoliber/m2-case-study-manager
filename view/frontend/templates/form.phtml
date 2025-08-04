@@ -15,6 +15,28 @@ use Magento\Framework\Escaper;
 
 $caseStudy = $block->getCaseStudy();
 ?>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Initialize the Markdown editor
+        let contentField = document.getElementById('content');
+        let contentPreview = document.getElementById('content_preview');
+        if (contentField && contentPreview) {
+            updateContentPreview();
+            contentField.addEventListener('input', function () {
+                updateContentPreview();
+            });
+        }
+    });
+
+    function updateContentPreview() {
+        let text = document.getElementById('content').value,
+            target = document.getElementById('content_preview'),
+            converter = new showdown.Converter(),
+            html = converter.makeHtml(text);
+
+        target.innerHTML = html;
+    }
+</script>
 
 <form class="max-w-6xl mx-auto bg-white shadow-lg rounded-lg p-6"
       action="<?= $escaper->escapeUrl($block->getFormAction()) ?>"
@@ -111,19 +133,30 @@ $caseStudy = $block->getCaseStudy();
         </div>
 
         <div class="col-span-2">
-            <label for="content" class="block text-sm font-medium text-gray-600">
-                <?= $escaper->escapeHtml(__('Detailed Description')) ?>
-            </label>
-            <textarea name="content"
-                      id="content"
-                      rows="6"
-                      class="form-input w-full wysiwyg-editor"
-                      minlength="100"
-                      required><?= $escaper->escapeHtml($caseStudy->getContent()) ?></textarea>
-            <p class="mt-1 text-sm text-gray-500">
-                <?= $escaper->escapeHtml(__('Min 100 characters.')) ?></p>
-            <p class="mt-1 text-sm text-blue-600">
-                <?= $escaper->escapeHtml(__('Only Markdown formatting is allowed in this field.')) ?></p>
+            <div id="content_container" class="mb-4 flex flex-col flex-1 md:grid md:grid-cols-2 gap-4 items-stretch">
+                <div class="flex items-start flex-col">
+                    <label for="content" class="block text-sm font-medium text-gray-600">
+                        <?= $escaper->escapeHtml(__('Detailed Description')) ?>
+                    </label>
+                    <textarea name="content"
+                            id="content"
+                            rows="6"
+                            class="form-input w-full wysiwyg-editor"
+                            minlength="100"
+                            required><?= $escaper->escapeHtml($caseStudy->getContent()) ?></textarea>
+                    <p class="mt-1 text-sm text-gray-500">
+                        <?= $escaper->escapeHtml(__('Min 100 characters.')) ?></p>
+                    <p class="mt-1 text-sm text-blue-600">
+                        <?= $escaper->escapeHtml(__('Only Markdown formatting is allowed in this field.')) ?></p>
+                </div>
+                <div class="flex items-start flex-col">
+                    <label for="content_preview" class="block text-sm font-medium text-gray-600">
+                        <?= $escaper->escapeHtml(__('Preview')) ?>
+                    </label>
+                        <span id="content_preview" class="form-input w-full"></span>
+                </div>
+            </div>
+            
         </div>
 
         <div class="col-span-2">
