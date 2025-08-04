@@ -26,6 +26,8 @@ use Qoliber\CaseStudyManager\Model\CaseStudyFactory;
 
 class EditPost implements HttpPostActionInterface
 {
+    private const PARAM_SCREENSHOTS_LIST = 'screenshots_list';
+
     /**
      * @param \Magento\Framework\Url $url
      * @param \Magento\Framework\App\ResponseInterface $response
@@ -62,6 +64,27 @@ class EditPost implements HttpPostActionInterface
 
         if ($this->customerSession->authenticate()) {
             $this->response->setRedirect($this->url->getUrl('casestudy/manage/')); // @phpstan-ignore-line
+
+            $screenShotList = $this->request->getParam(self::PARAM_SCREENSHOTS_LIST); // @phpstan-ignore-line
+            if (!is_array($screenShotList)) {
+                $screenShotList = explode(PHP_EOL, $screenShotList);
+            }
+            $screenShotList = array_map('trim', $screenShotList);
+            $invalidUrls = [];
+
+            foreach ($screenShotList as $key => $url) {
+                if (!filter_var($url, FILTER_VALIDATE_URL)) {
+                    $invalidUrls[] = $url;
+                    unset($screenShotList[$key]);
+                }
+            }
+
+            $this->request->setParam(self::PARAM_SCREENSHOTS_LIST, implode(PHP_EOL, $screenShotList)); // @phpstan-ignore-line
+            if (!empty($invalidUrls)) {
+                $this->messageManager->addErrorMessage(
+                    __('The following URLs are invalid and have been removed: %1', implode(', ', $invalidUrls))->render()
+                );
+            }
 
             try {
                 $this->saveCaseStudy(
@@ -114,10 +137,75 @@ class EditPost implements HttpPostActionInterface
                 ->getAbsolutePath('case_study');
             $uploader->save($path);
 
-            return $uploader->getUploadedFileName();
+            $imageName = $uploader->getUploadedFileName();
+            $this->generateImageThumbnail("$path/$imageName");
+
+            return $imageName;
         }
 
         return null;
+    }
+
+    /**
+     * Generate image thumbnail
+     *
+     * @param string $imagePath
+     * @return string|null
+     */
+    private function generateImageThumbnail(string $imagePath): ?string
+    {
+        // Check if GD extension is loaded, otherwise return null
+        if (!extension_loaded('gd')) {
+            return null;
+        }
+        
+        // Get the file name from the path
+        $fileName = basename($imagePath);
+
+        // Generate the thumbnail path
+        $thumbnailPath = $this->filesystem
+            ->getDirectoryRead(DirectoryList::MEDIA)
+            ->getAbsolutePath('case_study/thumbnails/' . $fileName);
+
+
+        // Ensure the thumbnail directory exists
+        if (!is_dir(dirname($thumbnailPath))) {
+            mkdir(dirname($thumbnailPath), 0755, true);
+        }
+
+        // If the thumbnail already exists, return its path
+        if (file_exists($thumbnailPath)) {
+            return $thumbnailPath;
+        }
+
+        // Create a copy of the the thumbnail
+        $image = imagecreatefromstring(file_get_contents($imagePath));
+        if ($image === false) {
+            return null; // Failed to create image from file
+        }
+
+        // TODO: Make the thumbnail size configurable
+        // Calculate the thumbnail dimensions while maintaining aspect ratio
+        $width = imagesx($image);
+        $height = imagesy($image);
+        $thumbnailWidth = 150; // Set desired thumbnail width. 
+        $thumbnailHeight = (int) (($thumbnailWidth / $width) * $height); // Maintain aspect ratio
+        $thumbnail = imagecreatetruecolor($thumbnailWidth, $thumbnailHeight);
+
+        // Preserve transparency for PNG and GIF images
+        imagecopyresampled(
+            $thumbnail,
+            $image,
+            0, 0, 0, 0,
+            $thumbnailWidth, $thumbnailHeight,
+            $width, $height
+        );
+
+        imagejpeg($thumbnail, $thumbnailPath); // Save thumbnail
+        imagedestroy($thumbnail); // Free up memory
+        imagedestroy($image); // Free up memory
+            
+        return $thumbnailPath;
     }
 
     /**
